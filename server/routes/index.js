@@ -25,12 +25,20 @@ router.delete('/todo/:id', function (req, res, next) {
 
 router.post('/todo', function (req, res, next) {
     let results = "Create Todos";
-    res.send(results);
+    Todos.create(req.body, function (err,result) {
+        if (err) {
+            console.log(req.body);
+            res.send(err);
+        }
+        else {
+            res.send(result);
+        }
+    })
 });
 
 router.put('/todo/:id', function (req, res, next) {
     let results = "Update Todos";
-    res.send(results);
+    res.send(results)
 });
 
 router.get('/todo/seeddata', function (req, res, next) {

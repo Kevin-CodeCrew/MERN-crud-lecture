@@ -12,7 +12,22 @@ class App extends Component {
         return (
             <Router>
                 <div className = "container">
-
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                        {/*<a className="navbar-brand">VooDoo ToDos</a>*/}
+                        <Link to="/" className="navbar-brand">VooDoo ToDos</Link>
+                        <div className="collapse navbar-collapse">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="navbar-item">
+                                    <Link to="/" className="nav-link">ToDos</Link>
+                                </li>
+                                <li className="navbar-item">
+                                    <Link to="/create" className="nav-link">New ToDo</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <Route path="/" exact component={ToDosList}/>
+                    <Route path="/create" component={CreateToDo}/>
                 </div>
             </Router>
         );
