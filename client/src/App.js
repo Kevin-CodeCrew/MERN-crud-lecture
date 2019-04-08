@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import CreateToDo from "./components/create-todo.component";
@@ -13,9 +12,8 @@ class App extends Component {
             <Router>
                 <div className = "container">
                     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                        {/*<a className="navbar-brand">VooDoo ToDos</a>*/}
                         <Link to="/" className="navbar-brand">VooDoo ToDos</Link>
-                        <div className="collapse navbar-collapse">
+                        <div>
                             <ul className="navbar-nav mr-auto">
                                 <li className="navbar-item">
                                     <Link to="/" className="nav-link">ToDos</Link>
@@ -28,6 +26,7 @@ class App extends Component {
                     </nav>
                     <Route path="/" exact component={ToDosList}/>
                     <Route path="/create" component={CreateToDo}/>
+                    <Route path="/edit/:id" component={EditToDo}/>
                 </div>
             </Router>
         );

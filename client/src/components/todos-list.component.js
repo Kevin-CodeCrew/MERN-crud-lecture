@@ -1,10 +1,54 @@
 import React, {Component} from 'react';
+import {Link, Redirect} from 'react-router-dom';
 
-export default class ToDoList extends Component {
+
+const Todo = props => (
+    <tr>
+        <td>{props.todo.todo_description}</td>
+        <td>{props.todo.todo_responsible}</td>
+        <td>
+            <Link to={"/edit/" + props.todo._id}>Edit</Link>
+        </td>
+    </tr>
+);
+
+export default class TodosList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {todos: []};
+    }
+
+    componentDidMount() {
+        fetch('/todo')
+            .then(data => data.json())
+            .then(returnedData => this.setState({todos:returnedData}))
+
+    }
+
+    todoList() {
+        return(
+            this.state.todos && this.state.todos.map(function (currentTodo, i) {
+            return <Todo todo={currentTodo} key={i}/>;
+        }))
+    }
+
     render() {
         return (
             <div>
-                <h3>List Component</h3>
+                <h3>Todos List</h3>
+                <table className="table table-striped" style={{marginTop: 20}}>
+                    <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Responsible</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.todoList()}
+                    </tbody>
+                </table>
             </div>
         )
     }
