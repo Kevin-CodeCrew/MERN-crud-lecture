@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router-dom";
 
 export default class CreateToDo extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ export default class CreateToDo extends Component {
         this.state = {
             todo_description: '',
             todo_responsible: '',
-            todo_completed: false
+            todo_completed: false,
+            toHomePage: false,
         }
     }
 
@@ -57,9 +59,14 @@ export default class CreateToDo extends Component {
                     todo_description: '',
                     todo_responsible: '',
                     todo_completed: false
-                })).then(this.props.history.push(`/`))
+                })).then(()=>{this.setState({toHomePage: true})}
+        );
     }
+
     render() {
+        if (this.state.toHomePage === true){
+            return <Redirect to={'/'}/>
+        }
         return (
             <div style={{marginTop: 20}}>
                 <h3>Create ToDo</h3>

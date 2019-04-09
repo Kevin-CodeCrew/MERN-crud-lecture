@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const Todo = props => (
@@ -7,7 +7,7 @@ const Todo = props => (
         <td>{props.todo.todo_description}</td>
         <td>{props.todo.todo_responsible}</td>
         <td>
-            <Link to={"/edit/" + props.todo._id}>Edit</Link>
+            <Link to={"/edit/" + props.todo._id}>Edit</Link> | <Link to={"/delete/" + props.todo._id}>Delete</Link>
         </td>
     </tr>
 );
